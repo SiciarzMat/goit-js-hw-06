@@ -8,20 +8,29 @@ boxHolder.classList.add("boxHolder");
 let amount = 0;
 
 const createBoxes = (amount) => {
-  while (boxHolder.firstChild) {
-    boxHolder.firstChild.remove();
-  }
   amount = input.value;
-  for (let i = 1; i <= amount; i++) {
-    let width = 20;
-    let heigth = 20;
-    const box = document.createElement("div");
-    boxHolder.appendChild(box);
-    box.textContent = i;
-    box.classList.add("box");
-    box.style.width = `${width + 10 * i}px `;
-    box.style.height = `${heigth + 10 * i}px `;
-    box.style.backgroundColor = getRandomHexColor();
+  if (!boxHolder.hasChildNodes()) {
+    for (let i = 1; i <= amount; i++) {
+      let width = 20;
+      let heigth = 20;
+      const box = document.createElement("div");
+      boxHolder.appendChild(box);
+      box.classList.add("box");
+      box.style.width = `${width + 10 * i}px `;
+      box.style.height = `${heigth + 10 * i}px `;
+      box.style.backgroundColor = getRandomHexColor();
+    }
+  } else if (boxHolder.hasChildNodes()) {
+    for (let i = 1; i <= amount; i++) {
+      let width = 20;
+      let heigth = 20;
+      const box = document.createElement("div");
+      boxHolder.appendChild(box);
+      box.classList.add("box");
+      box.style.width = `${width + 10 * boxHolder.childElementCount + 1}px `;
+      box.style.height = `${heigth + 10 * boxHolder.childElementCount + 1}px `;
+      box.style.backgroundColor = getRandomHexColor();
+    }
   }
 };
 
